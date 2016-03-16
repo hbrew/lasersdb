@@ -1,0 +1,138 @@
+@charset "UTF-8";
+
+/**
+ * Defines the primary styles for the web page.
+ *
+ * This file imports other files to create the base theme. Add your own custom
+ * styles after the import.
+ */
+
+/**
+ * Use styles from LaRC CSS Library.
+ */
+ 
+
+
+body {
+	background-image: url("../img/starfield-banner.jpg");
+	background-color: #000;
+}
+
+#logo-container {
+	/*height: 50px;*/
+	width: 140px;
+	position: relative;
+	top: -20px;
+}
+
+#nasaLogo {
+	position: absolute;
+	height: 92px;
+	width: 110px;
+}
+
+.imageText {
+	color: black;
+	height: 1px;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	top: -1000px;
+	width: 1px;
+}
+.navbar {
+	margin-top: 10px;
+}
+#navbar {
+	padding-left: 130px;
+}
+
+.dropdown-menu > li > a:hover {
+	background-color: #4984b2;
+	color: #fff;
+}
+
+#content {
+	background-color: #e4e4e4;
+	border-radius: 5px;
+	padding: 50px;
+	padding-top: 0px;
+	border-width: 10px 2px 2px 2px;
+	border-style: solid;
+	border-color: #222;
+	border-top-color: #4984b2;
+	margin-top: 30px;
+}
+
+#breadcrumbs-bg {
+	border-top: 34px solid #4984b2;
+	border-left: 17px solid transparent;
+	border-right: 17px solid transparent;
+	height: 0;
+	display: inline-block;
+	margin-top: -10px;
+}
+
+.breadcrumb {
+	background-color: #4984b2;
+	color: #fff;
+	position: relative;
+	top: -34px;
+}
+.breadcrumb > li.active {
+	color: #ccc;
+}
+.page-header {
+	margin-top: 0px;
+}
+.list-group {
+	width: auto;
+}
+.list-group-item {
+	width: auto;
+}
+
+.input-group-addon {
+	min-width: 100px;
+}
+
+.chosen-results {
+	z-index: 1000000;
+}
+#db-nav > .input-group > select {
+	display: inline-block;
+}
+#sellmeier-form {
+	width: 45%;
+	min-width: 300px;
+	float: left;
+	margin-right: 50px;
+	margin-bottom: 20px;
+}
+.sellmeier-selection {
+	width: 100%;
+	min-width: 400px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.sellmeier-selection > .materials_list {
+	width: 50%;
+}
+.sellmeier-selection > .axis_list {
+	width: 40%;
+}
+.sellmeier-selection > .del {
+	width: 9.8%;
+	float: right;
+	display: none;
+}
+#chart_box {
+	width: 45%;
+	min-width: 500px;
+	min-height: 500px;
+	display: inline-block;
+	text-align: center;
+}
+
+
+/** tables **/

@@ -1,0 +1,579 @@
+@charset "UTF-8";/*!normalize.css 2011-10-24T11:29 UTC - http://github.com/necolas/normalize.css */
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section {
+	display: block;
+}
+audio, canvas, video {
+	display: inline-block;
+*display:inline;
+*zoom:1;
+}
+audio:not([controls]) {
+	display: none;
+}
+[hidden] {
+display:none;
+}
+html {
+	font-size: 100%;
+	overflow-y: scroll;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+body {
+	margin: 0;
+}
+body, button, input, select, textarea {
+	font-family: sans-serif;
+}
+a:focus {
+	outline: thin dotted;
+}
+a:hover, a:active {
+	outline: 0;
+}
+abbr[title] {
+	border-bottom: 1px dotted;
+}
+b, strong {
+	font-weight: bold;
+}
+blockquote {
+	margin: 1em 40px;
+}
+dfn {
+	font-style: italic;
+}
+mark {
+	background: #ff0;
+	color: #000;
+}
+pre, code, kbd, samp {
+	font-family: monospace, serif;
+	_font-family: 'courier new', monospace;
+	font-size: 1em;
+}
+pre {
+	white-space: pre;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+q {
+	quotes: none;
+}
+q:before, q:after {
+	content: '';
+	content: none;
+}
+small {
+	font-size: 75%;
+}
+sub, sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+sup {
+	top: -0.5em;
+}
+sub {
+	bottom: -0.25em;
+}
+ul, ol {
+	margin: 1em 0;
+	padding: 0 0 0 40px;
+}
+dd {
+	margin: 0 0 0 40px;
+}
+nav ul, nav ol {
+	list-style: none;
+	list-style-image: none;
+}
+img {
+	border: 0;
+	-ms-interpolation-mode: bicubic;
+}
+svg:not(:root) {
+	overflow: hidden;
+}
+figure {
+	margin: 0;
+}
+form {
+	margin: 0;
+}
+fieldset {
+	border: 1px solid #c0c0c0;
+	margin: 0 2px;
+	padding: .35em .625em .75em;
+}
+legend {
+	border: 0;
+*margin-left:-7px;
+}
+button, input, select, textarea {
+	font-size: 100%;
+	margin: 0;
+	vertical-align: baseline;
+*vertical-align:middle;
+}
+button, input {
+	line-height: normal;
+}
+button, input[type="button"], input[type="reset"], input[type="submit"] {
+	cursor: pointer;
+	-webkit-appearance: button;
+*overflow:visible;
+}
+input[type="checkbox"], input[type="radio"] {
+	box-sizing: border-box;
+	padding: 0;
+}
+input[type="search"] {
+	-webkit-appearance: textfield;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+}
+input[type="search"]::-webkit-search-decoration {
+-webkit-appearance:none;
+}
+button::-moz-focus-inner, input::-moz-focus-inner {
+border:0;
+padding:0;
+}
+textarea {
+	overflow: auto;
+	vertical-align: top;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+body {
+	font: 13px/1.231 arial, helvetica, clean, sans-serif;
+*font-size:small;
+*font:x-small;
+}
+select, input, button, textarea {
+	font: 99% arial, helvetica, clean, sans-serif;
+}
+table {
+	font-size: inherit;
+	font: 100%;
+}
+pre, code, kbd, samp, tt {
+	font-family: monospace;
+*font-size:108%;
+	line-height: 100%;
+}
+body {
+	background-color: black;
+	color: white;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+#site_level {
+	text-align: left;
+	margin: 0;
+}
+a:link {
+	color: #9CF;
+	text-decoration: none;
+}
+a:visited {
+	color: #9CF;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+h1 {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 138.5%;
+	margin: 1em 0;
+}
+h2 {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 131%;
+	margin: 1em 0;
+}
+h3 {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 123.1%;
+	margin: 1em 0;
+}
+h4 {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 116%;
+	margin: 1em 0;
+}
+h5 {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 108%;
+	margin: 1em 0;
+}
+h6 {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 100%;
+	margin: 1em 0;
+}
+#page_level, #section_level, #page_level {
+	overflow: hidden;
+}
+#page_level {
+	margin-bottom: 10px;
+}
+a.external {
+	background: url(images/external.gif) no-repeat right center;
+	padding-right: 13px;
+}
+.imageText {
+	color: black;
+	height: 1px;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	top: -1000px;
+	width: 1px;
+}
+.selectedMenuItem {
+	font-weight: bold;
+}
+.breadCrumb {
+	background-color: #2E2E2E;
+	margin-bottom: 10px;
+	padding: 5px;
+}
+.breadCrumb a {
+	padding: 0 .5em 0 .5em;
+	white-space: nowrap;
+}
+@media all and (min-width:536px) {
+body {
+	background-image: url(images/bg_image.jpg);
+	background-position: top center;
+	background-repeat: no-repeat;
+}
+#site_level {
+	max-width: 950px;
+	margin: 10px auto 10px auto;
+}
+.skipNav {
+	color: black;
+	height: 1px;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	top: -1000px;
+	width: 1px;
+}
+.breadCrumb a {
+	padding: 0 1em 0 1em;
+}
+}
+@media print {
+html {
+	background-color: white;
+}
+body {
+	background: none;
+	background-color: white;
+}
+.skipNav {
+	display: none;
+}
+}
+#page_content {
+	border: medium double #aba9a9;
+	background-color: #e4e4e4;
+	border: medium double #aba9a9;
+	color: black;
+	margin: 0;
+	padding: 1em;
+}
+#page_content a {
+	color: #004d93;
+}
+#page_header {
+	margin: 0;
+	padding: 0;
+}
+#page_title {
+	background-color: #c8c8c8;
+	background-image: url(images/h2_white.gif);
+	background-repeat: repeat-x;
+	border-left: solid 1px #aba9a9;
+	border-right: solid 1px #aba9a9;
+	border-top: solid 1px #aba9a9;
+	color: #2e2e2e;
+	font-size: 116%;
+	margin: 0;
+	padding: 5px;
+}
+#page_title a {
+	color: #2e2e2e;
+}
+#page_menu {
+	background-color: #e4e4e4;
+	border: medium double #aba9a9;
+	color: black;
+	margin: 0;
+	padding: 1em;
+}
+#page_menu ul {
+	margin: 0;
+	padding: 0;
+}
+#page_menu a {
+	color: #004d93;
+}
+#page_menu .selectedMenuItem a {
+	color: black;
+	text-decoration: none;
+}
+#page_menu .selectedMenuItem a:hover {
+	color: black;
+	text-decoration: none;
+}
+#page_footer {
+	background-color: #e4e4e4;
+	border: medium double #aba9a9;
+	color: black;
+	margin: 0;
+	padding: 1em;
+}
+#page_footer a:link {
+	color: #004d93;
+}
+@media all and (min-width:536px) {
+#page_menu li {
+	display: inline;
+	list-style: none;
+	margin: 0;
+	padding: 1em;
+}
+}
+@media print {
+#page_menu {
+	display: none;
+}
+}
+#section_title {
+	background-image: url(images/h2_d_grey.gif);
+	background-repeat: repeat-x;
+	border-bottom: solid 1px #3b3b3b;
+	color: white;
+	padding: 5px 5px 10px 5px;
+	margin: 0;
+	font-size: 116%;
+}
+#section_title a {
+	color: white;
+}
+#section_menu {
+	background-color: #2e2e2e;
+	margin: 0 0 10px 0;
+	padding: 0;
+}
+#section_menu ul {
+	margin: 0;
+	padding: 0;
+}
+#section_menu li {
+	border-bottom: solid 1px #3b3b3b;
+	border-left: solid 1px #3b3b3b;
+	border-right: solid 1px #3b3b3b;
+	border-top: solid 1px #191919;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#section_menu a {
+	color: #fff;
+	display: block;
+	margin: 0;
+	padding: 3px 3px 3px 20px;
+}
+#section_menu a:hover {
+	background-color: #252525;
+	margin: 0;
+	padding: 3px 3px 3px 20px;
+	text-decoration: none;
+}
+#section_menu .selectedMenuItem {
+	color: #9cf;
+}
+#section_menu .selectedMenuItem a {
+	color: #9cf;
+}
+#section_footer {
+	background-color: #1d1d1d;
+	clear: left;
+	margin-top: 10px;
+	padding: 5px;
+}
+@media all and (min-width:536px) {
+#section_header {
+	float: left;
+	margin: 0 10px 0 0;
+	width: 228px;
+}
+}
+@media print {
+#section_menu {
+	display: none;
+}
+}
+#site_header {
+	background-color: #1d1d1d;
+}
+#site_header .nasaLogo {
+	background-image: url(images/nasa_logo_header_small.png);
+	background-repeat: no-repeat;
+	display: block;
+	float: left;
+	height: 28px;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	width: 36px;
+}
+#site_title {
+	font-size: 149%;
+	margin: 0;
+	padding-top: 3px;
+	padding-right: 0;
+	padding-bottom: 3px;
+	padding-left: 10px;
+}
+#site_title a {
+	color: #fff;
+	text-decoration: none;
+}
+#site_header .breadCrumb {
+	border-top: solid 1px black;
+}
+#site_menu {
+	background-color: #2e2e2e;
+	background-image: url(images/header_bg.gif);
+	background-repeat: repeat-x;
+	margin: 0;
+	overflow: auto;
+	padding: 0;
+}
+#site_menu ul {
+	margin: 0;
+	padding: 0;
+}
+#site_menu li {
+	border-left: solid 1px #191919;
+	border-right: solid 1px #3b3b3b;
+	color: #fff;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 116%;
+	font-weight: bold;
+	list-style: none;
+	margin: 0;
+	text-transform: capitalize;
+	white-space: nowrap;
+	padding: 0;
+}
+#site_menu a {
+	padding: 5px 10px 5px 10px;
+	color: #fff;
+	display: block;
+	text-decoration: none;
+}
+#site_menu a:hover {
+	color: #fff;
+	background-color: #1d1d1d;
+	background-image: url(images/site_menu_rollover.gif);
+	background-repeat: repeat-x;
+	display: block;
+	text-decoration: none;
+}
+#site_footer {
+	background-color: #2e2e2e;
+	background-image: url(images/header_bg.gif);
+	background-repeat: repeat-x;
+	color: #b2b2b2;
+	font-size: 85%;
+	margin-top: 1em;
+	padding: 5px;
+}
+#site_footer address {
+	font-style: normal;
+}
+#site_footer a {
+	color: #b2b2b2;
+}
+#site_footer a:hover {
+	color: white;
+}
+@media all and (min-width:536px) {
+#site_header {
+	min-height: 98px;
+	left: 0;
+	margin-bottom: 10px;
+	position: relative;
+	top: 0;
+}
+#site_header .nasaLogo {
+	background-image: url(images/nasa_logo_header.gif);
+	height: 98px;
+	width: 140px;
+	float: none;
+}
+#site_title {
+	left: 150px;
+	position: absolute;
+	top: 62px;
+	width: 800px;
+	z-index: 1;
+}
+#site_menu {
+	left: 140px;
+	overflow: visible;
+	position: absolute;
+	top: 0;
+	width: 810px;
+}
+#site_menu li {
+	float: left;
+	font-size: 16.9px;
+	height: 100%;
+	width: 24.7%;
+}
+#site_menu a {
+	height: 28px;
+	margin-top: -6px;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+	padding-top: 20px;
+	padding-right: 10px;
+	padding-bottom: 15px;
+	padding-left: 20px;
+}
+#site_menu a:hover {
+	height: 28px;
+	margin-top: -6px;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+	padding-top: 20px;
+	padding-right: 10px;
+	padding-bottom: 15px;
+	padding-left: 10px;
+}
+}
+@media print {
+#site_menu {
+	display: none;
+}
+}
