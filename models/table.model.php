@@ -17,7 +17,11 @@ class Table extends MySQL {
 			$this->columns[] = $col->name;
 		}
 
-		$this->data = $result->fetch_all(MYSQLI_NUM);
+		// Requres native mysql driver
+		//$this->data = $result->fetch_all(MYSQLI_NUM);
+		while($row = $result->fetch_assoc()) {
+			$this->data[] = $row;
+		}
 
 		# Remove db specific columns
 		$junk_names = array(

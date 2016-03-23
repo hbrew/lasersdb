@@ -1,10 +1,10 @@
 <?php
 
 class MySQL {
-	private $host = '';
-	private $username = '';
-	private $password = '';
-	private $database = '';
+	private $host = 'marvin.larc.nasa.gov';
+	private $username = 'lasersdb';
+	private $password = 'df4ehCiHKVM!';
+	private $database = 'lasersdb';
 	private $mysqli;
 
 	protected function connect() {
