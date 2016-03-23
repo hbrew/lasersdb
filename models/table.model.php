@@ -19,7 +19,7 @@ class Table extends MySQL {
 
 		// Requres native mysql driver
 		//$this->data = $result->fetch_all(MYSQLI_NUM);
-		while($row = $result->fetch_assoc()) {
+		while($row = $result->fetch_array(MYSQLI_NUM)) {
 			$this->data[] = $row;
 		}
 
