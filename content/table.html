@@ -1,8 +1,11 @@
-<div id="datatable-search" class="input-group" style="display:none; width:50%; margin:auto;">
+<div id="datatable-search" class="input-group" style="display:none; width:50%; margin:auto; min-width:250px">
   <input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon1" />
   <span class="input-group-addon" id="basic-addon1" aria-hidden="true"><span class="glyphicon glyphicon-search"></span></span>
 </div>
 <table class="table table-striped table-bordered table-hover table-condensed dt-responsive" cellspacing="0" width="100%">
 {{ TBODY }}
 </table>
-<div id="buttons-export" style="text-align:center; margin-top:20px;"></div>
+<div class="dt-buttons btn-group" style="text-align:center; margin-top:20px;">
+<span class="">Export to </span>
+<span id="buttons-export"></span>
+</div>

@@ -1,6 +1,6 @@
 <?php
 
-class Error {
+class UserError {
 	private $message = "";
 	private $priority = 0;
 

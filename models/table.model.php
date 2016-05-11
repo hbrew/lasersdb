@@ -3,8 +3,9 @@
 class Table extends MySQL {
 	
 	protected $table_name;
-	private $columns = array();
-	private $data = array();
+	protected $columns = array(); // Database column names
+	protected $data = array(); // Table data
+	protected $column_names = array(); // Human readable version of database column names (excluding db only columns like id)
 
 	function __construct() {
 		$this->connect();
@@ -23,21 +24,29 @@ class Table extends MySQL {
 			$this->data[] = $row;
 		}
 
+		$this->cleanFields();
+
+	}
+
+	protected function cleanFields() {
 		# Remove db specific columns
 		$junk_names = array(
-			'footnote',
-			'uid'
+			'uid',
+			'_date',
+			'_id',
+			'file_'
 		);
-		foreach($junk_names as $key => $name) {
-			$junk = array_search($name, $this->columns);
-			if($junk) {
-				unset($this->columns[$junk]);
-				foreach($this->data as $key => $row) {
-					unset($this->data[$key][$junk]);
+		foreach($junk_names as $junk_key => $name) {
+			foreach($this->columns as $column_key => $column) {
+				$junk = strpos($column, $name);
+				if(!($junk === False)) {
+					unset($this->columns[$column_key]);
+					foreach($this->data as $key => $row) {
+						unset($this->data[$key][$column_key]);
+					}
 				}
 			}
 		}
-
 	}
 
 	public function getTableCols() {
@@ -46,6 +55,13 @@ class Table extends MySQL {
 
 	public function getTableData() {
 		return $this->data;
+	}
+
+	public function getTableColNames() {
+		if (empty($this->column_names)) {
+			return $this->columns;
+		}
+		return $this->column_names;
 	}
 
 }

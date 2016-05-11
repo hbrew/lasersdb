@@ -18,7 +18,7 @@ class View {
 		$this->context['CONTENT'] = $this->getStaticContent('table.html');
 		$this->context['JS'] = '<script src="js/table.js"></script>';
 		$model->loadTable();
-		$columns = $model->getTableCols();
+		$columns = $model->getTableColNames();
 		$data = $model->getTableData();
 		$tbody = '<thead><tr>';
 		foreach($columns as $key => $col) {
@@ -56,7 +56,7 @@ class View {
 			$this->getTable(new ChemName);
 		}
 		else {
-			$GLOBALS['errors'][] = new Error('Unsupported type');
+			$GLOBALS['errors'][] = new UserError('Unsupported type');
 			$this->render('index.html');
 		}
 	}
@@ -67,7 +67,7 @@ class View {
 			$this->getTable(new Conduct);
 		}
 		else {
-			$GLOBALS['errors'][] = new Error('Unsupported type');
+			$GLOBALS['errors'][] = new UserError('Unsupported type');
 			$this->render('index.html');
 		}
 	}
@@ -78,7 +78,7 @@ class View {
 			$this->getTable(new Damage);
 		}
 		else {
-			$GLOBALS['errors'][] = new Error('Unsupported type');
+			$GLOBALS['errors'][] = new UserError('Unsupported type');
 			$this->render('index.html');
 		}
 	}
@@ -89,7 +89,7 @@ class View {
 			$this->getTable(new Density);
 		}
 		else {
-			$GLOBALS['errors'][] = new Error('Unsupported type');
+			$GLOBALS['errors'][] = new UserError('Unsupported type');
 			$this->render('index.html');
 		}
 	}
@@ -100,7 +100,7 @@ class View {
 			$this->getTable(new Dndt);
 		}
 		else {
-			$GLOBALS['errors'][] = new Error('Unsupported type');
+			$GLOBALS['errors'][] = new UserError('Unsupported type');
 			$this->render('index.html');
 		}
 	}
@@ -111,7 +111,7 @@ class View {
 			$this->getTable(new ElectOpt);
 		}
 		else {
-			$GLOBALS['errors'][] = new Error('Unsupported type');
+			$GLOBALS['errors'][] = new UserError('Unsupported type');
 			$this->render('index.html');
 		}
 	}
@@ -123,7 +123,7 @@ class View {
 			$this->getTable(new Elevel);
 		}
 		else {
-			$GLOBALS['errors'][] = new Error('Unsupported type');
+			$GLOBALS['errors'][] = new UserError('Unsupported type');
 			$this->render('index.html');
 		}
 	}
@@ -140,6 +140,16 @@ class View {
 		}
 	}
 
+	public function getFootnote($type) {
+		$this->context['TITLE'] = Footnote::$name;
+		if ($type == 'table') {
+			$this->getTable(new Footnote);
+		}
+		else {
+			$GLOBALS['errors'][] = new Error('Unsupported type');
+			$this->render('index.html');
+		}
+	}
 
 	public function getLifetime($type) {
 		$this->context['TITLE'] = Lifetime::$name;
@@ -147,7 +157,7 @@ class View {
 			$this->getTable(new Lifetime);
 		}
 		else {
-			$GLOBALS['errors'][] = new Error('Unsupported type');
+			$GLOBALS['errors'][] = new UserError('Unsupported type');
 			$this->render('index.html');
 		}
 	}
@@ -159,7 +169,7 @@ class View {
 			$this->getTable(new Manfold);
 		}
 		else {
-			$GLOBALS['errors'][] = new Error('Unsupported type');
+			$GLOBALS['errors'][] = new UserError('Unsupported type');
 			$this->render('index.html');
 		}
 	}
@@ -171,7 +181,7 @@ class View {
 			$this->getTable(new Nonline);
 		}
 		else {
-			$GLOBALS['errors'][] = new Error('Unsupported type');
+			$GLOBALS['errors'][] = new UserError('Unsupported type');
 			$this->render('index.html');
 		}
 	}
@@ -183,7 +193,7 @@ class View {
 			$this->getTable(new OptPump);
 		}
 		else {
-			$GLOBALS['errors'][] = new Error('Unsupported type');
+			$GLOBALS['errors'][] = new UserError('Unsupported type');
 			$this->render('index.html');
 		}
 	}
@@ -195,7 +205,7 @@ class View {
 			$this->getTable(new Photo);
 		}
 		else {
-			$GLOBALS['errors'][] = new Error('Unsupported type');
+			$GLOBALS['errors'][] = new UserError('Unsupported type');
 			$this->render('index.html');
 		}
 	}
@@ -207,7 +217,7 @@ class View {
 			$this->getTable(new Physical);
 		}
 		else {
-			$GLOBALS['errors'][] = new Error('Unsupported type');
+			$GLOBALS['errors'][] = new UserError('Unsupported type');
 			$this->render('index.html');
 		}
 	}
@@ -219,7 +229,7 @@ class View {
 			$this->getTable(new Reldiel);
 		}
 		else {
-			$GLOBALS['errors'][] = new Error('Unsupported type');
+			$GLOBALS['errors'][] = new UserError('Unsupported type');
 			$this->render('index.html');
 		}
 	}
@@ -236,7 +246,7 @@ class View {
 			$this->getChart($content, $scripts);
 		}
 		else {
-			$GLOBALS['errors'][] = new Error('Unsupported type');
+			$GLOBALS['errors'][] = new UserError('Unsupported type');
 			$this->render('index.html');
 		}
 	}
@@ -247,7 +257,23 @@ class View {
 			$this->getTable(new SpecHeat);
 		}
 		else {
-			$GLOBALS['errors'][] = new Error('Unsupported type');
+			$GLOBALS['errors'][] = new UserError('Unsupported type');
+			$this->render('index.html');
+		}
+	}
+
+	public function getSpectra($type) {
+		$this->context['TITLE'] = Spectra::$name;
+		if ($type == 'table') {
+			$this->getTable(new Spectra);
+		}
+		elseif ($type == 'chart') {
+			$content = 'spectra.html';
+			$scripts = array('spectra.js');
+			$this->getChart($content, $scripts);
+		}
+		else {
+			$GLOBALS['errors'][] = new UserError('Unsupported type');
 			$this->render('index.html');
 		}
 	}
@@ -259,7 +285,7 @@ class View {
 			$this->getTable(new VSound);
 		}
 		else {
-			$GLOBALS['errors'][] = new Error('Unsupported type');
+			$GLOBALS['errors'][] = new UserError('Unsupported type');
 			$this->render('index.html');
 		}
 	}
@@ -271,7 +297,7 @@ class View {
 			$this->getTable(new YieldStrength);
 		}
 		else {
-			$GLOBALS['errors'][] = new Error('Unsupported type');
+			$GLOBALS['errors'][] = new UserError('Unsupported type');
 			$this->render('index.html');
 		}
 	}
@@ -282,7 +308,7 @@ class View {
 			$this->getTable(new Young);
 		}
 		else {
-			$GLOBALS['errors'][] = new Error('Unsupported type');
+			$GLOBALS['errors'][] = new UserError('Unsupported type');
 			$this->render('index.html');
 		}
 	}
@@ -300,7 +326,7 @@ class View {
 	private function render($page) {
 		$template_path = $GLOBALS['template_dir'] . $page;
 		$template = file_get_contents($template_path);
-		$this->context['ERRORS'] = Error::format();
+		$this->context['ERRORS'] = UserError::format();
 		foreach($this->context as $var => $value) {
 			$template = str_replace("{{ $var }}", $value, $template);
 		}

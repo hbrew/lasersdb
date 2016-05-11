@@ -34,9 +34,9 @@ class Data {
 		if(isset($_GET['selection'])) {
 			// Parse selection
 			$selection = json_decode(urldecode($_GET['selection']));
-			//print_r($selection);
+			// print_r($selection);
 			if(!$sell->selectMaterials($selection)) {
-				$errors[] = new Error("Materials do not exist", 1);
+				$errors[] = new UserError("Materials do not exist", 1);
 			}
 			// Parse legend
 			$legend = array();
@@ -67,7 +67,7 @@ class Data {
 					$xmax = $_GET['xmax'] + 0;
 					$step = $_GET['step'] + 0;
 				} else {
-					$errors[] = new Error("Wavelength range must be a number", 1);
+					$errors[] = new UserError("Wavelength range must be a number", 1);
 				}
 			}
 			$plot->setX(range($xmin, $xmax, $step));
@@ -93,6 +93,32 @@ class Data {
 		} else {
 			// Output materials list
 			echo $sell->getMaterialsJson();
+		}
+	}
+
+	public static function plotSpectra() {
+		$plot = new Plot();
+		$plot->title("Signal Vs. Wavelength");
+		$plot->xlabel("Wavelength (nm)");
+		$plot->ylabel("Signal (cm^2)");
+		$spectra = new Spectra();
+		$spectra->loadOptions();
+
+		// Make material selection if it exists
+		if(isset($_GET['selection'])) {
+			$selection = json_decode(urldecode($_GET['selection']));
+			// print_r($selection);
+			if(!$spectra->selectOptions($selection)) {
+				$errors[] = new UserError("Options do not exist", 1);
+			}
+			$plot->setX($spectra->getWavelengths());
+			$plot->setY($spectra->getSignals());
+			$plot->legend(array(' '));
+			// Output plot data
+			echo $plot->getJson();
+		} else {
+			// Output materials list
+			echo $spectra->getJson();
 		}
 	}
 

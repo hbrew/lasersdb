@@ -62,9 +62,10 @@ body {
 	border-color: #222;
 	border-top-color: #4984b2;
 	margin-top: 30px;
+	min-width: 600px;
 }
 
-#breadcrumbs-bg {
+/*#breadcrumbs-bg {
 	border-top: 34px solid #4984b2;
 	border-left: 17px solid transparent;
 	border-right: 17px solid transparent;
@@ -81,7 +82,7 @@ body {
 }
 .breadcrumb > li.active {
 	color: #ccc;
-}
+}*/
 .page-header {
 	margin-top: 0px;
 }
@@ -134,5 +135,8 @@ body {
 	text-align: center;
 }
 
+/*.form-control {
+	min-width: 50px;
+}*/
 
 /** tables **/

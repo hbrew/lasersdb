@@ -13,6 +13,9 @@ if (isset($_GET['data'])) {
 	elseif ($data_req == 'sellmeier') {
 		Data::plotSellmeier();
 	}
+	elseif ($data_req == 'spectra') {
+		Data::plotSpectra();
+	}
 }
 # Or render a page
 else {
@@ -52,6 +55,9 @@ else {
 	elseif($view_req == 'expand') {
 		$view->getExpand($type_req);
 	}
+	elseif($view_req == 'footnote') {
+		$view->getFootnote($type_req);
+	}
 	elseif($view_req == 'lifetime') {
 		$view->getLifetime($type_req);
 	}
@@ -78,6 +84,9 @@ else {
 	}
 	elseif($view_req == 'specheat') {
 		$view->getSpecHeat($type_req);
+	}
+	elseif($view_req == 'spectra') {
+		$view->getSpectra($type_req);
 	}
 	elseif($view_req == 'vsound') {
 		$view->getVSound($type_req);
