@@ -22,7 +22,7 @@ class Spectra extends Table {
 		$result = $this->query($q);
 		while($row = $result->fetch_assoc()) {
 			$wavelength_range = strval($row['wavelength_start'])." - ".strval($row['wavelength_end']);
-			$types = ['abs'=>'Absorption', 'emi'=>'Emission'];
+			$types = array('abs'=>'Absorption', 'emi'=>'Emission');
 			$type = $types[$row['sig_type']];
 			$this->options[$row['cat_name']][$row['axis']][$type][$wavelength_range] = $row['file_id']; 
 		}

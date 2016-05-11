@@ -1,10 +1,10 @@
 <?php
 
 class MySQL {
-	private $host = '';
-	private $username = '';
-	private $password = '';
-	private $database = '';
+	private $host = 'localhost';
+	private $username = 'root';
+	private $password = 'root';
+	private $database = 'lasersdb';
 	private $mysqli;
 
 	protected function connect() {
