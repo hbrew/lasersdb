@@ -13,22 +13,30 @@
 
 <span class="selection">
 <div class="input-group chart-selection">
-  <select data-placeholder="Choose materials" class="form-control select1">
-  	<option value="" disabled selected>Choose materials</option>
+  <div class="select1">
+  <select data-placeholder="Spectra type" class="form-control select1-input">
+    <option value="" disabled selected>Spectra type</option>
   </select>
-  <select data-placeholder="Optical axis" class="form-control select2">
+  </div>
+  <div class="select2">
+  <select data-placeholder="Material" class="form-control select2-input">
+  	<option value="" disabled selected>Material</option>
+  </select>
+  </div>
+<!--   <select data-placeholder="Optical axis" class="form-control select3">
   	<option value="" disabled selected>Optical axis</option>
-  </select>
-  <select data-placeholder="Signal type" class="form-control select3">
-    <option value="" disabled selected>Signal Type</option>
   </select>
   <select data-placeholder="Wavelength Range" class="form-control select4">
     <option value="" disabled selected>Wavelength Range</option>
-  </select>
-  <!-- <button type="button" class="form-control btn btn-danger del">X</button> -->
+  </select> -->
+  <div class="input-group select3">
+    <span class="input-group-addon">Optical Axis</span>
+  </div>
+  <div class="input-group select4">
+    <span class="input-group-addon">Wavelength Range</span>
+  </div>
 </div>
 </span>
-<button type="button" style="width:200px" class="btn form-control" id="more">More Materials</button>
 <br />
 <button type="button" style="width:100px" class="btn form-control" id="draw">Draw</button>
 </div>

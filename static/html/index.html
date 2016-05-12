@@ -69,14 +69,6 @@
 	        </div><!--/.container-fluid -->
 	      </nav>
 	      <div id="content">
-
-	        <div class="alert alert-danger" role="alert" style="display: none;">
-			  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-			  <span class="sr-only">Error:</span>
-			  <span id="error-message">
-			  	{{ ERRORS }}
-			  </span>
-			</div>
 			<div id="db-nav" class="input-group">
 				<span class="input-group-addon">Data</span>
 				<select data-placeholder="Choose data" id="data-selection" class="form-control">
@@ -88,6 +80,13 @@
 					<option value="table" disabled>Table</option>
 					<option value="chart" disabled>Chart</option>
 				</select>
+			</div>
+			<div class="alert alert-danger" role="alert" style="display: none; margin-top:10px;">
+			  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+			  <span class="sr-only">Error:</span>
+			  <span id="error-message">
+			  	{{ ERRORS }}
+			  </span>
 			</div>
 			<hr />
           	{{ CONTENT }} 

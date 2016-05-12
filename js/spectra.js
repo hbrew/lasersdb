@@ -1,62 +1,44 @@
 
 
-// $("#more").click(function() {
-//   $("#selection-template").clone().insertAfter(".selection:last");
-//   var that = $(".selection").last();
-//   that.removeAttr("style");
-//   that.removeAttr("id");
-//   // that.children(".input-group").children("select.select1").addClass("chosen-select");
-//   that.children(".input-group").children("button").show();
-//   var n = $(".selection").length;
-//   if( n > 2) {
-//     $("button.del").show();
-//   }
-// });
 
-// $("#chart-form").on("click", "button.del", function() {
-//   $(this).parentsUntil("span").remove();
-//   var n = $(".selection").length;
-//   if( n <= 2) {
-//     $("button.del").hide();
-//   }
-// });
-
-$("#chart-form").on("change", ".select3", function() {
-  var selected1 = $(this).parent().children('.select1').val();
-  var selected2 = $(this).parent().children('.select2').val();
-  var selected3 = $(this).val();
-  var that = $(this).parent().children('.select4');
-  $(that).children("option").not("option:disabled").remove();
-  $.get('./?data=spectra', function(response){
-    var materials = JSON.parse(response);
-    $.each(materials[selected1][selected2][selected3], function(index, value) {
-      $(that).append($('<option></option>')
-        .attr('value', index)
-        .text(index)
-      );
-    });
-  });
-})
-
-$("#chart-form").on("change", ".select2", function() {
-  var selected1 = $(this).parent().children('.select1').val();
+$("#chart-form").on("change", ".select2-input", function() {
+  var selected1 = $('.select1-input').val();
   var selected2 = $(this).val();
-  var that = $(this).parent().children('.select3');
-  $(that).children("option").not("option:disabled").remove();
+  var that = $('.select3');
+  $(that).children("label").remove();
   $.get('./?data=spectra', function(response){
     var materials = JSON.parse(response);
     $.each(materials[selected1][selected2], function(index, value) {
-      $(that).append($('<option></option>')
-        .attr('value', index)
+      $(that).append($('<label></label>')
         .text(index)
+      );
+      $(that).children("label").last().append($('<input type="checkbox">')
+        .attr('value', index)
+        .attr('class', 'select3-input')
+      );
+    });
+  });
+  // Assume same wavelengths are available for each axis
+  var that2 = $('.select4')
+  $(that2).children("label").remove();
+  $.get('./?data=spectra', function(response){
+    var materials = JSON.parse(response);
+    var axis = $('.select3-input').last().val();
+    $.each(materials[selected1][selected2][axis], function(index, value) {
+      $(that2).append($('<label></label>')
+        .text(index)
+      );
+      $(that2).children("label").last().append($('<input type="checkbox">')
+        .attr('value', index)
+        .attr('class', 'select4-input')
       );
     });
   });
 })
 
-$("#chart-form").on("change", ".select1", function() {
+$("#chart-form").on("change", ".select1-input", function() {
   var selected = $(this).val();
-  var that = $(this).parent().children('.select2');
+  var that = $('.select2-input');
   $(that).children("option").not("option:disabled").remove();
   $.get('./?data=spectra', function(response){
     var materials = JSON.parse(response);
@@ -70,20 +52,23 @@ $("#chart-form").on("change", ".select1", function() {
 })
 
 $("#draw").click(function() {
-  var selection1 = $(".select1 option:selected").not("option:disabled").map(function(){ return this.value }).get().join(", ");
+  var selection1 = $(".select1-input option:selected").not("option:disabled").map(function(){ return this.value }).get().join(", ");
   selection1 = selection1.split(", ");
-  var selection2 = $(".select2 option:selected").not("option:disabled").map(function(){ return this.value }).get().join(", ");
+  var selection2 = $(".select2-input option:selected").not("option:disabled").map(function(){ return this.value }).get().join(", ");
   selection2 = selection2.split(", ");
-  var selection3 = $(".select3 option:selected").not("option:disabled").map(function(){ return this.value }).get().join(", ");
+  var selection3 = $(".select3-input:checkbox:checked").map(function(){ return this.value }).get().join(", ");
   selection3 = selection3.split(", ");
-  var selection4 = $(".select4 option:selected").not("option:disabled").map(function(){ return this.value }).get().join(", ");
+  var selection4 = $(".select4-input:checkbox:checked").map(function(){ return this.value }).get().join(", ");
   selection4 = selection4.split(", ");
-  var key2 = {};
-  key2[selection3] = selection4;
-  var key1 = {};
-  key1[selection2] = key2;
   var selection = {};
-  selection[selection1] = key1;
+  selection[selection1] = {};
+  selection[selection1][selection2] = {};
+  $.each(selection3, function(key3, value3) {
+    selection[selection1][selection2][value3] = {};
+    $.each(selection4, function(key4, value4) {
+      selection[selection1][selection2][value3][value4] = [];
+    });
+  });
   console.log(JSON.stringify(selection));
   var page = './?data=spectra&selection=';
   page = page.concat(encodeURIComponent(JSON.stringify(selection)));
@@ -98,7 +83,7 @@ $("#draw").click(function() {
 $.get('./?data=spectra', function(response){
   var materials = JSON.parse(response);
   $.each(materials, function(index, value) {
-    $('.select1').append($('<option></option>')
+    $('.select1-input').append($('<option></option>')
       .attr('value', index)
       .text(index)
     );

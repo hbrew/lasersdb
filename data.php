@@ -98,9 +98,7 @@ class Data {
 
 	public static function plotSpectra() {
 		$plot = new Plot();
-		$plot->title("Signal Vs. Wavelength");
-		$plot->xlabel("Wavelength (nm)");
-		$plot->ylabel("Signal (cm^2)");
+		$plot->xlabel("Wavelength (nm)");	
 		$spectra = new Spectra();
 		$spectra->loadOptions();
 
@@ -108,12 +106,34 @@ class Data {
 		if(isset($_GET['selection'])) {
 			$selection = json_decode(urldecode($_GET['selection']));
 			// print_r($selection);
-			if(!$spectra->selectOptions($selection)) {
-				$errors[] = new UserError("Options do not exist", 1);
+			$x = array();
+			$y = array();
+			$legend = array();
+			foreach($selection as $type => $name_array) {
+				$plot->ylabel($type." (cm^2)");
+				foreach($name_array as $name => $axis_array) {
+					$plot->title($name." ".$type." Vs. Wavelength");
+					foreach($axis_array as $axis => $range_array) {
+						$n = 0;
+						$legend[$n] = $axis." axis";
+						$y[$legend[$n]] = array();
+						foreach($range_array as $range => $empty) {
+							if(!$spectra->selectOptions($type, $name, $axis, $range)) {
+								$errors[] = new UserError("Options do not exist", 1);
+							}
+							if($n == 0) { // only need wavelengths once
+								$x = array_merge($x, $spectra->getWavelengths());
+							}
+							$y[$legend[$n]] = array_merge($y[$legend[$n]], $spectra->getSignals());
+							$n = $n + 1;
+							$spectra->clearSelection();
+						}
+					}
+				}
 			}
-			$plot->setX($spectra->getWavelengths());
-			$plot->setY($spectra->getSignals());
-			$plot->legend(array(' '));
+			$plot->setX($x);
+			$plot->setY($y);
+			$plot->legend($legend);
 			// Output plot data
 			echo $plot->getJson();
 		} else {

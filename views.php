@@ -322,6 +322,7 @@ class View {
 
 	private function getStaticContent($page) {
 		$content_path = $GLOBALS['content_dir'] . $page;
+		$this->context['DATE'] = date("F d, Y", filemtime($content_path));
 		return file_get_contents($content_path);
 	}
 

@@ -9,7 +9,7 @@ class Spectra extends Table {
 	protected $data_table = 'spectra';
 	private $options = array();
 	private $wavelengths = array();
-	private $signals = array(array());
+	private $signals = array();
 
 	function __construct() {
 		$this->table_name = 'spectra_files';
@@ -24,7 +24,9 @@ class Spectra extends Table {
 			$wavelength_range = strval($row['wavelength_start'])." - ".strval($row['wavelength_end']);
 			$types = array('abs'=>'Absorption', 'emi'=>'Emission');
 			$type = $types[$row['sig_type']];
-			$this->options[$row['cat_name']][$row['axis']][$type][$wavelength_range] = $row['file_id']; 
+			$axis = $row['axis'];
+			if (is_null($axis)) { $axis = "iso"; }
+			$this->options[$type][$row['cat_name']][$row['axis']][$wavelength_range] = $row['file_id']; 
 		}
 	}
 
@@ -32,26 +34,19 @@ class Spectra extends Table {
 		return json_encode($this->options);
 	}
 
-	public function selectOptions($selection) {
-		foreach ($selection as $name => $axis_array) {
-			// print($name);
-			if (array_key_exists($name, $this->options)) {
-				foreach ($axis_array as $axis => $type_array) {
-					// print($axis);
-					if (array_key_exists($axis, $this->options[$name])) {
-						foreach ($type_array as $type => $range) {
-							// print($type);
-							if (array_key_exists($range[0], $this->options[$name][$axis][$type])) {
-								$q = 'SELECT wavelength,sig FROM '.$this->data_table.' WHERE file_id = '.$this->options[$name][$axis][$type][$range[0]];
-								$result = $this->query($q);
-								while($row = $result->fetch_array(MYSQLI_ASSOC)) {
-									// print_r($row);
-									$this->wavelengths[] = $row['wavelength'] - 0;
-									$this->signals[0][] = $row['sig'] - 0;
-								}
-								return True;
-							}
+	public function selectOptions($type, $name, $axis, $range) {
+		if (array_key_exists($type, $this->options)) {
+			if (array_key_exists($name, $this->options[$type])) {
+				if (array_key_exists($axis, $this->options[$type][$name])) {
+					if (array_key_exists($range, $this->options[$type][$name][$axis])) {
+						$q = 'SELECT wavelength,sig FROM '.$this->data_table.' WHERE file_id = '.$this->options[$type][$name][$axis][$range];
+						$result = $this->query($q);
+						while($row = $result->fetch_array(MYSQLI_ASSOC)) {
+							// print_r($row);
+							$this->wavelengths[] = $row['wavelength'] - 0;
+							$this->signals[] = $row['sig'] - 0;
 						}
+						return True;
 					}
 				}
 			}
@@ -65,6 +60,11 @@ class Spectra extends Table {
 
 	public function getSignals() {
 		return $this->signals;
+	}
+
+	public function clearSelection() {
+		$this->wavelengths = array();
+		$this->signals = array();
 	}
 
 }

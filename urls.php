@@ -97,5 +97,10 @@ else {
 	elseif($view_req == 'young') {
 		$view->getYoung($type_req);
 	}
+	else {
+		// Go home with an error
+		$GLOBALS['errors'][] = new UserError('The page that you requested could not be found.');
+		$view->getHome();
+	}
 }
 ?>
