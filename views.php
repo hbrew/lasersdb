@@ -11,6 +11,8 @@ class View {
 	## Functions which compile the view in context ##
 
 	public function getHome() {
+		$this->context['TITLE'] = 'LasersDB';
+		$this->context['CONTENT'] = $this->getStaticContent('home.html');
 		$this->render('index.html');
 	}
 
