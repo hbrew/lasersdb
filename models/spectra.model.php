@@ -25,8 +25,8 @@ class Spectra extends Table {
 			$types = array('abs'=>'Absorption', 'emi'=>'Emission');
 			$type = $types[$row['sig_type']];
 			$axis = $row['axis'];
-			if (is_null($axis)) { $axis = "iso"; }
-			$this->options[$type][$row['cat_name']][$row['axis']][$wavelength_range] = $row['file_id']; 
+			if ($axis == '1') { $axis = "iso";}
+			$this->options[$type][$row['cat_name']][$axis][$wavelength_range] = $row['file_id']; 
 		}
 	}
 
@@ -43,8 +43,10 @@ class Spectra extends Table {
 						$result = $this->query($q);
 						while($row = $result->fetch_array(MYSQLI_ASSOC)) {
 							// print_r($row);
-							$this->wavelengths[] = $row['wavelength'] - 0;
-							$this->signals[] = $row['sig'] - 0;
+							if ($row['wavelength'] != 0) {
+								$this->wavelengths[] = $row['wavelength'] - 0;
+								$this->signals[] = $row['sig'] - 0;
+							}
 						}
 						return True;
 					}

@@ -4,22 +4,24 @@
 $("#chart-form").on("change", ".select2-input", function() {
   var selected1 = $('.select1-input').val();
   var selected2 = $(this).val();
-  var that = $('.select3');
+  var that = $('.select3').children('.btn-group');
   $(that).children("label").remove();
   $.get('./?data=spectra', function(response){
     var materials = JSON.parse(response);
     $.each(materials[selected1][selected2], function(index, value) {
       $(that).append($('<label></label>')
         .text(index)
+        .attr('class', 'btn btn-primary active')
       );
       $(that).children("label").last().append($('<input type="checkbox">')
         .attr('value', index)
         .attr('class', 'select3-input')
+        .attr('checked', true)
       );
     });
   });
   // Assume same wavelengths are available for each axis
-  var that2 = $('.select4')
+  var that2 = $('.select4').children('.btn-group');
   $(that2).children("label").remove();
   $.get('./?data=spectra', function(response){
     var materials = JSON.parse(response);
@@ -27,10 +29,12 @@ $("#chart-form").on("change", ".select2-input", function() {
     $.each(materials[selected1][selected2][axis], function(index, value) {
       $(that2).append($('<label></label>')
         .text(index)
+        .attr('class', 'btn btn-primary active')
       );
       $(that2).children("label").last().append($('<input type="checkbox">')
         .attr('value', index)
         .attr('class', 'select4-input')
+        .attr('checked', true)
       );
     });
   });
@@ -73,7 +77,8 @@ $("#draw").click(function() {
   var page = './?data=spectra&selection=';
   page = page.concat(encodeURIComponent(JSON.stringify(selection)));
   $.get(page, function(raw_data){
-    drawChart(JSON.parse(raw_data), 'Signal vs wavelength', 'Wavelength (nm)', 'Signal');
+    data = JSON.parse(raw_data);
+    drawChart(data, selection1+' vs wavelength', 'Wavelength (nm)', data[0][0]);
   });
 });
 

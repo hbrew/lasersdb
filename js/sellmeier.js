@@ -13,7 +13,7 @@ $("#more").click(function() {
   }
 });
 
-$("#sellmeier-form").on("click", "button.del", function() {
+$("#chart-form").on("click", "button.del", function() {
   $(this).parentsUntil("span").remove();
   var n = $(".selection").length;
   if( n <= 2) {
@@ -21,7 +21,7 @@ $("#sellmeier-form").on("click", "button.del", function() {
   }
 });
 
-$("#sellmeier-form").on("change", ".materials_list", function() {
+$("#chart-form").on("change", ".materials_list", function() {
   var selected = $(this).val();
   var that = $(this).parent().children('.axis_list');
   $(that).children("option").not("option:disabled").remove();

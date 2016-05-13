@@ -9,12 +9,23 @@ var dataTable = google.visualization.arrayToDataTable(data);
 // Set chart options
 var options = {
   title: titleStr,
-  hAxis: { title: xlabel },
-  vAxis: { title: ylabel },
+  hAxis: { 
+    title: xlabel,
+  },
+  vAxis: { 
+    title: ylabel,
+    format:'0.###E0'
+  },
   legend: { position: 'bottom' },
   width: 500,
   height: 500
 };
+
+// Format for y data
+var formatter = new google.visualization.NumberFormat({pattern: '0.###E0'});
+for (var i = 1; i < data[0].length; i++) {
+  formatter.format(dataTable, i);
+}
 
 // Instantiate and draw our chart, passing in some options.
 var chartStatic = new google.visualization.LineChart(document.getElementById('chart_printable'));

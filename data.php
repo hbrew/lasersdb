@@ -113,8 +113,9 @@ class Data {
 				$plot->ylabel($type." (cm^2)");
 				foreach($name_array as $name => $axis_array) {
 					$plot->title($name." ".$type." Vs. Wavelength");
+					$n = 0;
 					foreach($axis_array as $axis => $range_array) {
-						$n = 0;
+						// print_r($axis);
 						$legend[$n] = $axis." axis";
 						$y[$legend[$n]] = array();
 						foreach($range_array as $range => $empty) {
@@ -125,9 +126,9 @@ class Data {
 								$x = array_merge($x, $spectra->getWavelengths());
 							}
 							$y[$legend[$n]] = array_merge($y[$legend[$n]], $spectra->getSignals());
-							$n = $n + 1;
 							$spectra->clearSelection();
 						}
+						$n = $n + 1;
 					}
 				}
 			}
